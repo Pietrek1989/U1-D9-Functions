@@ -8,14 +8,15 @@ ASSIGNMENT RULES
 - The solution must be pushed to the repository and be available for the tutors by the end of the day (5PM CET)
 */
 
-/* EXERCISE 1
- Write a function called "area" which receives 2 parameters (l1, l2) and calculates the area of the associated rectangle.
-*/
 function next(which) {
   return console.log(
     `--------------------Exercise ${which}--------------------\n`
   );
 }
+/* EXERCISE 1
+ Write a function called "area" which receives 2 parameters (l1, l2) and calculates the area of the associated rectangle.
+*/
+
 next(1);
 
 function area(l1, l2) {
@@ -31,9 +32,14 @@ console.log(area(5, 3));
 next(2);
 
 function crazySum(num1, num2) {
-  return num1 + num2;
+  if (num1 === num2) {
+    return (num1 + num2) * 3;
+  } else {
+    return num1 + num2;
+  }
 }
 console.log(crazySum(25, 100));
+console.log(crazySum(25, 25));
 
 /* EXERCISE 3
  Write a function called "crazyDiff" that computes the absolute difference between a given number and 19.
@@ -43,12 +49,11 @@ console.log(crazySum(25, 100));
 next(3);
 
 function crazyDiff(crazyNum) {
+  let resultCrazyNum = 19 - crazyNum;
   if (crazyNum <= 19) {
-    let resultCrazyNum = 19 - crazyNum;
-    return resultCrazyNum;
+    return Math.abs(resultCrazyNum);
   } else {
-    resultCrazyNum = 19 - crazyNum;
-    return resultCrazyNum * 3;
+    return Math.abs(resultCrazyNum * 3);
   }
 }
 console.log(crazyDiff(10));
@@ -73,15 +78,14 @@ console.log(boundary(100));
  Write a function called "strivify" which accepts a string as a parameter.
  It should add the word "Strive" in front of the given string, but if the given string already begins with "Strive", then it should just return the original string.
 */
-
 next(5);
 
-function strivify(astring) {
+function strivify(aString) {
   let wordStrive = "Strive";
-  if (astring === wordStrive) {
-    return astring;
+  if (aString.startsWith("Strive")) {
+    return aString;
   } else {
-    return wordStrive + astring;
+    return wordStrive + aString;
   }
 }
 console.log(strivify("Strive"));
@@ -94,11 +98,12 @@ console.log(strivify("ing"));
 next(6);
 
 function check3and7(positiveNum) {
-  if (positiveNum % 3 === 0 || positiveNum % 7 === 0) {
-    console.log(`The ${positiveNum} is multiple of 3 or 7`);
+  let absoluteNum = Math.abs(positiveNum);
+  if (absoluteNum % 3 === 0 || absoluteNum % 7 === 0) {
+    console.log(`The ${absoluteNum} is multiple of 3 or 7`);
     return true;
   } else {
-    console.log(`The ${positiveNum} is not a multiple of 3 or 7`);
+    console.log(`The ${absoluteNum} is not a multiple of 3 or 7`);
     return false;
   }
 }
@@ -106,6 +111,7 @@ function check3and7(positiveNum) {
 console.log(check3and7(30));
 console.log(check3and7(70));
 console.log(check3and7(2));
+console.log(check3and7(-30));
 
 /* EXERCISE 7
  Write a function called "reverseString" which programmatically reverses a given string (es.: Strive => evirtS).
@@ -127,15 +133,19 @@ console.log(reverseString("!lamron ot kcab m'I yeH"));
  Write a function called "upperFirst" which capitalizes the first letter of each word of a given string passed as a parameter.
 */
 
+//  Have to be for all words
+
 next(8);
 
 function upperFirst(wordToCapitalize) {
-  let firstLetter = wordToCapitalize.substr(0, 1);
-  let capitalized = firstLetter.toUpperCase();
-  let replaced = wordToCapitalize.replace(firstLetter, capitalized);
-  return replaced;
+  let arr = wordToCapitalize.split(" ");
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].substr(1);
+  }
+  return arr.join(" ");
 }
-console.log(upperFirst("lets go!"));
+let string = "haha";
+string.console.log(upperFirst("heya and heya"));
 
 /* EXERCISE 9
  Write a function called "cutString" which creates a new string without the first and last character of a given string passed as a parameter.
